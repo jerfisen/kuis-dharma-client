@@ -3,8 +3,13 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:kdygd/Navigate.dart';
 import 'package:kdygd/common/Session.dart';
 import 'package:kdygd/generated/i18n.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 
-void main() => runApp(KDYGD());
+void main() {
+	Crashlytics.instance.enableInDevMode = true;
+	FlutterError.onError = ( FlutterErrorDetails details ) => Crashlytics.instance.onError(details);
+	runApp(KDYGD());
+}
 
 class KDYGD extends StatelessWidget {
 	final GlobalKey<NavigatorState> _navigator_state = new GlobalKey();
