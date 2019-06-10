@@ -8,6 +8,8 @@
 .buildlog/
 .history
 .svn/
+generated
+**/*.g.dart
 
 # IntelliJ related
 *.iml
