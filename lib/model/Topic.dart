@@ -6,7 +6,7 @@ part 'Topic.g.dart';
 @JsonSerializable()
 class Topic {
 	@JsonKey(nullable: false, required: true, disallowNullValue: true)
-	final int id;
+	final String id;
 	
 	@JsonKey(nullable: false, required: true, disallowNullValue: true)
 	final String name;
