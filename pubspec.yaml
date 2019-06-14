@@ -31,7 +31,6 @@ dependencies:
   flutter_auth_buttons: ^0.5.0
   flushbar: ^1.7.0
   intl: ^0.15.8
-  flutter_tags: ^0.3.1
 
   json_annotation: ^2.4.0
 
@@ -47,6 +46,10 @@ dependencies:
   edenvidi_paging:
     git:
       url: https://github.com/LeonColt/edenvidi_paging.git
+
+  flutter_tags:
+    git:
+      url: https://github.com/LeonColt/flutter_tags.git
 
 dev_dependencies:
   flutter_test:

@@ -226,9 +226,11 @@ packages:
   flutter_tags:
     dependency: "direct main"
     description:
-      name: flutter_tags
-      url: "https://pub.dartlang.org"
-    source: hosted
+      path: "."
+      ref: HEAD
+      resolved-ref: "3d0d0bafa0ffef9668e81af007fbf32470aa26e9"
+      url: "https://github.com/LeonColt/flutter_tags.git"
+    source: git
     version: "0.3.1"
   flutter_test:
     dependency: "direct dev"
@@ -584,5 +586,6 @@ packages:
     source: hosted
     version: "2.1.15"
 sdks:
+  collection: ">=1.14.11 <2.0.0"
   dart: ">=2.3.0 <3.0.0"
   flutter: ">=1.6.0 <2.0.0"
