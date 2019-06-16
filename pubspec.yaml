@@ -38,6 +38,7 @@ dependencies:
   google_sign_in: ^4.0.2
   shared_preferences: ^0.5.3+1
   graphql_flutter: ^1.0.1
+  cached_network_image: ^0.8.0
 
   #firebase plugin
   firebase_crashlytics: ^0.0.4+4
@@ -50,6 +51,9 @@ dependencies:
   flutter_tags:
     git:
       url: https://github.com/LeonColt/flutter_tags.git
+
+dependency_overrides:
+  path_provider: ^1.1.0
 
 dev_dependencies:
   flutter_test:
@@ -71,6 +75,8 @@ flutter:
 
   assets:
     - images/logo.jpg
+    - images/learn.png
+    - images/exam.png
 
   # To add assets to your application, add an assets section, like this:
   # assets:

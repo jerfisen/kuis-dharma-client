@@ -85,6 +85,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "6.6.0"
+  cached_network_image:
+    dependency: "direct main"
+    description:
+      name: cached_network_image
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.8.0"
   charcode:
     dependency: transitive
     description:
@@ -204,6 +211,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.5.0"
+  flutter_cache_manager:
+    dependency: transitive
+    description:
+      name: flutter_cache_manager
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.3.2"
   flutter_easyrefresh:
     dependency: transitive
     description:
@@ -406,7 +420,7 @@ packages:
     source: hosted
     version: "1.6.2"
   path_provider:
-    dependency: transitive
+    dependency: "direct overridden"
     description:
       name: path_provider
       url: "https://pub.dartlang.org"
@@ -494,6 +508,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.5.5"
+  sqflite:
+    dependency: transitive
+    description:
+      name: sqflite
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.1.5"
   stack_trace:
     dependency: transitive
     description:
@@ -522,6 +543,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.4"
+  synchronized:
+    dependency: transitive
+    description:
+      name: synchronized
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.1.0"
   term_glyph:
     dependency: transitive
     description:
