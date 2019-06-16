@@ -5,5 +5,8 @@
 	"error_occurred": "An error occurred",
 	"skip": "Skip",
 
-	"topics": "Topics"
+	"topics": "Topics",
+
+	"learn": "Learn",
+	"exam": "Exam"
 }
