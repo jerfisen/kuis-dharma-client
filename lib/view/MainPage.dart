@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:kdygd/Navigate.dart';
 import 'package:kdygd/generated/i18n.dart';
 import 'package:kdygd/model/Topic.dart';
-import 'package:kdygd/view/account/AccountPage.dart';
+import 'package:kdygd/view/profile/ProfilePage.dart';
 import 'package:kdygd/view/common/AccountIcon.dart';
 import 'package:kdygd/view/exam/ExamPage.dart';
 import 'package:kdygd/view/learn/LearnPage.dart';
@@ -49,7 +49,7 @@ class _MainPageState extends State<MainPage> {
 		switch( _current_content ) {
 			case MainPageContent.LEARNING: return LearnPage( topic: _topic, );
 			case MainPageContent.EXAM: return ExamPage( topic: _topic, );
-			case MainPageContent.ACCOUNT: return new AccountPage();
+			case MainPageContent.ACCOUNT: return new ProfilePage();
 		}
 	}
 	
