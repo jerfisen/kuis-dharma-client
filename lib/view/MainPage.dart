@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kdygd/Navigate.dart';
+import 'package:kdygd/generated/i18n.dart';
 import 'package:kdygd/model/Topic.dart';
 import 'package:kdygd/view/account/AccountPage.dart';
 import 'package:kdygd/view/common/AccountIcon.dart';
@@ -30,15 +31,15 @@ class _MainPageState extends State<MainPage> {
 			items: <BottomNavigationBarItem>[
 				new BottomNavigationBarItem(
 					icon: Image.asset("images/learn.png", height: _ICON_SIZE, width: _ICON_SIZE,),
-					title: Text('Learn'),
+					title: Text(S.of(context).learn),
 				),
 				new BottomNavigationBarItem(
 					icon: Image.asset("images/exam.png", height: _ICON_SIZE, width: _ICON_SIZE,),
-					title: Text('Exam'),
+					title: Text(S.of(context).exam),
 				),
 				new BottomNavigationBarItem(
 					icon: AccountIcon( size: _ICON_SIZE, ),
-					title: Text('Account'),
+					title: Text(S.of(context).profile),
 				),
 			],
 		),
