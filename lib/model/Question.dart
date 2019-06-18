@@ -58,4 +58,13 @@ class Answer {
 	
 	factory Answer.fromJson( final Map<String, dynamic> json ) => _$AnswerFromJson(json);
 	Map<String, dynamic> toJson() => _$AnswerToJson(this);
+	
+	@override int get hashCode => id.hashCode;
+	
+	@override
+	bool operator ==(other) {
+		if ( other is String ) return id == other;
+		else if ( other is Answer ) return id == other.id;
+		else return false;
+	}
 }
