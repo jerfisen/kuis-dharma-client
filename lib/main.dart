@@ -26,7 +26,7 @@ class KDYGD extends StatelessWidget {
 	void _initRemoteConfig() async {
 		final RemoteConfig remote_config = await RemoteConfig.instance;
 		await remote_config.setDefaults({
-			"TIME_PER_QUESTION_IN_SECONDS": TIME_PER_QUESTION_IN_SECONDS,
+			DEFINITION_TIME_PER_QUESTION_IN_SECONDS: DEFAULT_TIMER_PER_QUESTION_IN_SECONDS,
 		});
 		await remote_config.fetch();
 		await remote_config.activateFetched();
