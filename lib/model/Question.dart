@@ -35,6 +35,15 @@ class Question {
 	
 	factory Question.fromJson( final Map<String, dynamic> json ) => _$QuestionFromJson(json);
 	Map<String, dynamic> toJson() => _$QuestionToJson(this);
+	
+	@override int get hashCode => id.hashCode;
+	
+	@override
+	bool operator ==(other) {
+		if ( other is String ) return id == other;
+		else if ( other is Answer ) return id == other.id;
+		else return false;
+	}
 }
 
 @JsonSerializable()
