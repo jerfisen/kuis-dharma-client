@@ -26,7 +26,7 @@ mutation createQuestion(
 
 const QUERY_DO_EXAMS = r'''
 query doExam( $length: Int!, $topic: ID! ) {
-  doExam( $length: $length, topic: $topic ) {
+  doExam( length: $length, topic: $topic ) {
     id
     text_content
     media_content
