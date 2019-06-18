@@ -164,6 +164,15 @@ packages:
       url: "https://github.com/LeonColt/edenvidi_paging.git"
     source: git
     version: "0.0.1"
+  edenvidi_progress_indicator:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: c970812f2b0557702d1e2781a812eb4d4b012248
+      resolved-ref: c970812f2b0557702d1e2781a812eb4d4b012248
+      url: "https://github.com/LeonColt/edenvidi_progress_indicator.git"
+    source: git
+    version: "0.0.1"
   firebase_auth:
     dependency: "direct main"
     description:
