@@ -11,5 +11,8 @@
 
 	"learn": "Pembelajaran",
 	"exam": "Latihan",
-	"profile": "Profile"
+	"profile": "Profile",
+
+	"question": "Pertanyaan $x",
+	"choose_answer": "Pilih jawaban"
 }

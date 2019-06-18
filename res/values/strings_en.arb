@@ -11,5 +11,8 @@
 
 	"learn": "Learn",
 	"exam": "Exam",
-	"profile": "Profile"
+	"profile": "Profile",
+
+	"question": "Question $x",
+	"choose_answer": "Choose your answer"
 }
