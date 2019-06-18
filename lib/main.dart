@@ -8,6 +8,7 @@ import 'package:kdygd/common/Session.dart';
 import 'package:kdygd/generated/i18n.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
+import 'package:firebase_remote_config/firebase_remote_config.dart';
 
 void main() {
 	Crashlytics.instance.enableInDevMode = true;
@@ -19,6 +20,16 @@ class KDYGD extends StatelessWidget {
 	final GlobalKey<NavigatorState> _navigator_state = new GlobalKey();
 	KDYGD() {
 		Session.instance.init(_navigator_state);
+		new Future.delayed( Duration.zero, _initRemoteConfig );
+	}
+	
+	void _initRemoteConfig() async {
+		final RemoteConfig remote_config = await RemoteConfig.instance;
+		await remote_config.setDefaults({
+			"TIME_PER_QUESTION_IN_SECONDS": TIME_PER_QUESTION_IN_SECONDS,
+		});
+		await remote_config.fetch();
+		await remote_config.activateFetched();
 	}
 	
 	// This widget is the root of your application.
