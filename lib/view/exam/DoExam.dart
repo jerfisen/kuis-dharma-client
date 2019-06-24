@@ -1,10 +1,14 @@
 import 'dart:async';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flushbar/flushbar_helper.dart';
 import 'package:flutter/material.dart';
+import 'package:json_annotation/json_annotation.dart';
 import 'package:kdygd/common/Config.dart';
 import 'package:kdygd/generated/i18n.dart';
+import 'package:kdygd/model/Exam.dart';
 import 'package:kdygd/model/Question.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:kdygd/repository/ExamRepository.dart';
 
 part 'question.tile.dart';
 part 'answer.tile.dart';
@@ -84,7 +88,7 @@ class _DoExamPageState extends State<DoExamPage> {
 								widget.questions[position].answers.map( ( final answer ) => [
 									new AnswerTile(
 										answer: answer,
-										selected: answer == _answers[position],
+										state: answer == _answers[position] ? AnswerState.RIGHT : AnswerState.NEUTER,
 										onTap: () {
 											if ( mounted ) setState( () => _answers[position] = answer ); else _answers[position] = answer;
 											if ( _timer != null && _timer.isActive ) _timer.cancel();
