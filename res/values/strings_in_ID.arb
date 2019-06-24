@@ -14,5 +14,7 @@
 	"profile": "Profile",
 
 	"question": "Pertanyaan $x",
-	"choose_answer": "Pilih jawaban"
+	"choose_answer": "Pilih jawaban",
+	"right": "Benar",
+	"wrong": "Salah"
 }

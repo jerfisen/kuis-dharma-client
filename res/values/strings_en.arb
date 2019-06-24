@@ -14,5 +14,7 @@
 	"profile": "Profile",
 
 	"question": "Question $x",
-	"choose_answer": "Choose your answer"
+	"choose_answer": "Choose your answer",
+	"right": "Right",
+	"wrong": "Wrong"
 }
