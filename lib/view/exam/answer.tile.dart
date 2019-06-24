@@ -1,15 +1,21 @@
 part of 'DoExam.dart';
 
+enum AnswerState {
+	NEUTER,
+	RIGHT,
+	WRONG
+}
+
 class AnswerTile extends StatelessWidget {
 	final Answer answer;
-	final bool selected;
+	final AnswerState state;
 	final VoidCallback onTap;
-	const AnswerTile({ Key key, @required this.answer, this.selected = false, @required this.onTap}) : assert( answer != null ), assert( onTap != null ), super(key: key);
+	const AnswerTile({ Key key, @required this.answer, this.state = AnswerState.NEUTER, @required this.onTap}) : assert( answer != null ), assert( onTap != null ), super(key: key);
 	@override
 	Widget build(BuildContext context) => new InkWell(
 		child: new Card(
 			elevation: CARD_ELEVATION,
-			color: selected ? Theme.of(context).accentColor : null,
+			color: state == AnswerState.NEUTER ? null : state == AnswerState.RIGHT ? Theme.of(context).accentColor : Theme.of(context).errorColor,
 			child: new Padding(
 				padding: const EdgeInsets.all(10.0),
 				child: answer.media_content.isEmpty ? _withoutMedia( context ) : _withMedia( context ),
@@ -24,7 +30,7 @@ class AnswerTile extends StatelessWidget {
 				answer.text_content,
 				style: new TextStyle(
 					fontSize: 21.0,
-					color: selected ? Theme.of(context).primaryTextTheme.title.color : null,
+					color: state == AnswerState.NEUTER ? null : Theme.of(context).primaryTextTheme.title.color,
 				),
 			),
 		],
@@ -51,7 +57,7 @@ class AnswerTile extends StatelessWidget {
 				answer.text_content,
 				style: new TextStyle(
 					fontSize: 16.0,
-					color: selected ? Theme.of(context).primaryTextTheme.title.color : null,
+					color: state == AnswerState.NEUTER ? null : Theme.of(context).primaryTextTheme.title.color,
 				),
 			),
 		],
