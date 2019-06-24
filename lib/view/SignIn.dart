@@ -5,7 +5,6 @@ import 'package:flushbar/flushbar_helper.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:flutter_auth_buttons/flutter_auth_buttons.dart';
-import 'package:kdygd/common/CommonFunction.dart';
 import 'package:kdygd/generated/i18n.dart';
 
 class SignIn extends StatefulWidget {
@@ -17,12 +16,13 @@ class SignIn extends StatefulWidget {
 
 class _SignInState extends State<SignIn> {
 	Future _signInWithGoogle() async {
-		final loading_indicator = createLoadingMessage(context, overlay_blur: 10.0);
+		final loading_indicator = await FlushbarHelper.createLoading(message: S.of(context).please_wait, linearProgressIndicator: new LinearProgressIndicator(), duration: null);
 		try {
 			final GoogleSignInAccount google_account = await new GoogleSignIn().signIn();
-			await loading_indicator.show(context);
+			loading_indicator.show(context);
 			final GoogleSignInAuthentication google_auth = await google_account.authentication;
 			await FirebaseAuth.instance.signInWithCredential( GoogleAuthProvider.getCredential(idToken: google_auth.idToken, accessToken: google_auth.accessToken ) );
+			await loading_indicator.dismiss();
 		} catch ( error ) {
 			await loading_indicator.dismiss();
 			if ( error is SocketException )
@@ -31,7 +31,7 @@ class _SignInState extends State<SignIn> {
 				FlushbarHelper.createError(message: S.of(context).cant_login).show(context);
 			}
 		} finally {
-			if ( !loading_indicator.isDismissed() ) await loading_indicator.dismiss();
+			if ( loading_indicator.isShowing() ) await loading_indicator.dismiss();
 		}
 	}
 	Future _signInWithFacebook() async {
