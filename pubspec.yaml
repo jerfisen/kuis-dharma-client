@@ -53,10 +53,6 @@ dependencies:
     git:
       url: https://github.com/LeonColt/edenvidi_paging.git
 
-  flutter_tags:
-    git:
-      url: https://github.com/LeonColt/flutter_tags.git
-
 dependency_overrides:
   path_provider: ^1.1.0
 

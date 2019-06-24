@@ -4,7 +4,7 @@ import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:kdygd/generated/i18n.dart';
 import 'package:kdygd/graphql/topic.dart';
 import 'package:kdygd/model/Topic.dart';
-import 'package:flutter_tags/selectable_tags.dart';
+import 'package:rxdart/rxdart.dart';
 
 class SelectTopicPage extends StatefulWidget {
 	@override
@@ -12,7 +12,7 @@ class SelectTopicPage extends StatefulWidget {
 }
 
 class _SelectTopicPageState extends State<SelectTopicPage> {
-	final List<Topic> _topics = new List();
+	BehaviorSubject<List<Topic>> _topics_subject;
 	@override
 	Widget build(BuildContext context) => new Scaffold(
 		body: new NestedScrollView(
@@ -23,29 +23,39 @@ class _SelectTopicPageState extends State<SelectTopicPage> {
 					),
 				),
 			],
-			body: new SelectableTags(
-				tags: _topics.map( ( topic ) => new Tag(
-					id: int.tryParse( topic.id ) ?? 0,
-					title: topic.name,
-					active: true,
-				) ).toList(growable: false),
-				onPressed: _onTagSelected,
-				fontSize: 18.0,
-				activeColor: Theme.of(context).chipTheme.selectedColor,
-				color: Theme.of(context).chipTheme.backgroundColor,
-				singleItem: true,
+			body: new Padding(
+				padding: const EdgeInsets.symmetric(horizontal: 20.0),
+				child: new SingleChildScrollView(
+					child: new StreamBuilder<List<Topic>>(
+						stream: _topics_subject.stream,
+						builder: ( _, snapshot ) => new Wrap(
+							spacing: 10.0,
+							runSpacing: 10.0,
+							runAlignment: WrapAlignment.center,
+							children: snapshot.data.map( ( final Topic topic ) => new ActionChip(
+								onPressed: () => Navigator.of(context).pop(topic),
+								label: new Text(
+									topic.name,
+								),
+							) ).toList(),
+						),
+					),
+				),
 			),
 		),
 	);
 	
-	void _onTagSelected( Tag tag ) {
-		Navigator.of(context).pop( _topics.firstWhere( (topic ) => int.tryParse( topic.id ) == tag.id, orElse: () => null ) );
+	@override
+	void initState() {
+		_topics_subject = new BehaviorSubject.seeded([]);
+		super.initState();
+		new Future.delayed(Duration.zero, _loadTopics);
 	}
 	
 	@override
-	void initState() {
-		super.initState();
-		new Future.delayed(Duration.zero, _loadTopics);
+	void dispose() {
+		if ( _topics_subject != null && !_topics_subject.isClosed ) _topics_subject.close();
+		super.dispose();
 	}
 	
 	void _loadTopics() async {
@@ -61,9 +71,7 @@ class _SelectTopicPageState extends State<SelectTopicPage> {
 			FlushbarHelper.createError(message: S.of(context).error_occurred).show(context);
 		} else {
 			final topics = Topics.fromJson( result.data["topics"] );
-			if ( mounted ) setState(() {
-				_topics.addAll( topics.list );
-			});
+			if ( mounted ) setState( () => _topics_subject.add(topics.list) );
 		}
 	}
 }
