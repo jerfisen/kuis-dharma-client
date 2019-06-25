@@ -31,10 +31,19 @@ class _AccountIconState extends State<AccountIcon> {
 		new Future.delayed(Duration.zero, _loadAccountIcon);
 	}
 	
+	@override
+	void didUpdateWidget(AccountIcon oldWidget) {
+		super.didUpdateWidget(oldWidget);
+		new Future.delayed(Duration.zero, _loadAccountIcon);
+	}
+	
 	void _loadAccountIcon() async {
-		final user = await FirebaseAuth.instance.currentUser();
-		setState(() {
-			_user = user;
-		});
+		if ( _user == null ) {
+			final user = await FirebaseAuth.instance.currentUser();
+			if ( mounted ) setState( () => _user = user );
+		} else {
+			final user = await FirebaseAuth.instance.currentUser();
+			if ( mounted && _user.photoUrl != user.photoUrl ) setState( () => _user = user );
+		}
 	}
 }
