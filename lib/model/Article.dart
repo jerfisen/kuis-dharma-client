@@ -1,5 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:quill_delta/quill_delta.dart';
+import 'package:zefyr/zefyr.dart';
 
 part 'Article.g.dart';
 
@@ -15,7 +15,7 @@ class Article {
 	String title;
 	
 	@JsonKey(required: true, nullable: false, disallowNullValue: false, fromJson: _contentFromJson, toJson: _contentToJson )
-	List content;
+	NotusDocument content;
 	
 	Article({ this.id, this.topic_id, this.title, this.content });
 	
@@ -23,6 +23,6 @@ class Article {
 	
 	Map<String, dynamic> toJson() => _$ArticleToJson(this);
 	
-	static _contentFromJson( data ) => data;
-	static _contentToJson( data ) => ( data as List<Operation> ).map( ( op ) => op.toJson() ).toList(growable: false);
+	static _contentFromJson( data ) => new NotusDocument.fromJson(data);
+	static _contentToJson( final NotusDocument data ) => ( data.toJson() as List ).map( ( op ) => op.toJson() ).toList(growable: false);
 }
