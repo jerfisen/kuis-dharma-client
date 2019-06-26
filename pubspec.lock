@@ -21,7 +21,7 @@ packages:
       name: async
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.2.0"
+    version: "2.1.0"
   boolean_selector:
     dependency: transitive
     description:
@@ -49,7 +49,7 @@ packages:
       name: build_daemon
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.0"
+    version: "1.1.0"
   build_resolvers:
     dependency: transitive
     description:
@@ -105,7 +105,7 @@ packages:
       name: cloud_firestore
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.12.5+1"
+    version: "0.12.5+2"
   code_builder:
     dependency: transitive
     description:
@@ -161,7 +161,7 @@ packages:
       name: dart_style
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.2.8"
+    version: "1.2.7"
   dio:
     dependency: "direct main"
     description:
@@ -169,36 +169,27 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.7"
-  edenvidi_paging:
-    dependency: "direct main"
-    description:
-      path: "."
-      ref: HEAD
-      resolved-ref: a5cfa9340a6335a7bc16ff9253b953dfe6bd773e
-      url: "https://github.com/LeonColt/edenvidi_paging.git"
-    source: git
-    version: "0.0.1"
   firebase_auth:
     dependency: "direct main"
     description:
       name: firebase_auth
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.11.1+5"
+    version: "0.11.1+7"
   firebase_core:
     dependency: transitive
     description:
       name: firebase_core
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.4.0+3"
+    version: "0.4.0+6"
   firebase_crashlytics:
     dependency: "direct main"
     description:
       name: firebase_crashlytics
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.0.4+4"
+    version: "0.0.4+8"
   firebase_remote_config:
     dependency: "direct main"
     description:
@@ -206,6 +197,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.2.0+3"
+  firebase_storage:
+    dependency: "direct main"
+    description:
+      name: firebase_storage
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.0.2"
   fixnum:
     dependency: transitive
     description:
@@ -219,14 +217,14 @@ packages:
       name: fluro
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.4.0"
+    version: "1.5.0"
   flushbar:
     dependency: "direct main"
     description:
       name: flushbar
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.7.0"
+    version: "1.5.3"
   flutter:
     dependency: "direct main"
     description: flutter
@@ -247,7 +245,7 @@ packages:
     source: hosted
     version: "0.3.2"
   flutter_easyrefresh:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: flutter_easyrefresh
       url: "https://pub.dartlang.org"
@@ -265,13 +263,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.0.3"
-  flutter_staggered_grid_view:
-    dependency: transitive
-    description:
-      name: flutter_staggered_grid_view
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.3.0"
   flutter_swiper:
     dependency: "direct main"
     description:
@@ -361,13 +352,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.1.3"
+  image_cropper:
+    dependency: "direct main"
+    description:
+      name: image_cropper
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.2"
   image_picker:
-    dependency: transitive
+    dependency: "direct overridden"
     description:
       name: image_picker
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.5.4+3"
+    version: "0.6.0+10"
   intl:
     dependency: "direct main"
     description:
@@ -432,7 +430,7 @@ packages:
     source: hosted
     version: "1.1.6"
   mime:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: mime
       url: "https://pub.dartlang.org"
@@ -514,7 +512,7 @@ packages:
       name: quiver
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.3"
+    version: "2.0.2"
   quiver_hashcode:
     dependency: transitive
     description:
@@ -610,7 +608,7 @@ packages:
       name: synchronized
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.1.0"
+    version: "2.1.0+1"
   term_glyph:
     dependency: transitive
     description:
@@ -624,7 +622,7 @@ packages:
       name: test_api
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.2.5"
+    version: "0.2.4"
   timing:
     dependency: transitive
     description:
@@ -654,12 +652,12 @@ packages:
     source: hosted
     version: "5.0.3"
   uuid:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: uuid
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.1"
+    version: "2.0.2"
   vector_math:
     dependency: transitive
     description:
@@ -687,7 +685,7 @@ packages:
       name: yaml
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.1.15"
+    version: "2.1.16"
   zefyr:
     dependency: "direct main"
     description:
@@ -696,5 +694,5 @@ packages:
     source: hosted
     version: "0.5.0"
 sdks:
-  dart: ">=2.3.0 <3.0.0"
-  flutter: ">=1.6.0 <2.0.0"
+  dart: ">=2.3.0-dev.0.1 <3.0.0"
+  flutter: ">=1.5.0 <2.0.0"
