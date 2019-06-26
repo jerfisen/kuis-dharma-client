@@ -1,4 +1,4 @@
-part of 'LearnPage.dart';
+part of 'ArticlesPage.dart';
 
 class _ArticleTile extends StatelessWidget {
 	final Article article;
