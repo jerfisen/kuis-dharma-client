@@ -28,6 +28,7 @@ class _SelectTopicPageState extends State<SelectTopicPage> {
 				child: new SingleChildScrollView(
 					child: new StreamBuilder<List<Topic>>(
 						stream: _topics_subject.stream,
+						initialData: const [],
 						builder: ( _, snapshot ) => new Wrap(
 							spacing: 10.0,
 							runSpacing: 10.0,
@@ -70,8 +71,9 @@ class _SelectTopicPageState extends State<SelectTopicPage> {
 		if ( result.hasErrors ) {
 			FlushbarHelper.createError(message: S.of(context).error_occurred).show(context);
 		} else {
-			final topics = Topics.fromJson( result.data["topics"] );
-			if ( mounted ) setState( () => _topics_subject.add(topics.list) );
+			if ( mounted ) setState(() {
+				_topics_subject.add( ( result.data["topics"]["list"] as List ).map( ( data ) => Topic.fromJson( data ) ).toList() );
+			});
 		}
 	}
 }
