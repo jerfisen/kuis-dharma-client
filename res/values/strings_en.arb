@@ -1,20 +1,36 @@
 {
-	"cant_login": "Cannot login, something is not right",
-	"no_connection": "No internet connection",
-	"please_wait": "Please wait",
-	"error_occurred": "An error occurred",
-	"skip": "Skip",
-	"start": "Start",
-	"image_not_found": "Image not found",
-
-	"topics": "Topics",
-
-	"learn": "Learn",
-	"exam": "Exam",
-	"profile": "Profile",
-
-	"question": "Question $x",
-	"choose_answer": "Choose your answer",
-	"right": "Right",
-	"wrong": "Wrong"
+	"cant_login": "Tidak dapat masuk",
+	"no_connection": "Tidak ada koneksi internet",
+	"please_wait": "Mohon tunggu",
+	"error_occurred": "Terjadi kesalahan",
+	"skip": "Lewati",
+	"start": "Mulai",
+	"image_not_found": "Gambar tidak ditemukan",
+	
+	"topics": "Topik",
+	
+	"learn": "Pembelajaran",
+	"exam": "Latihan",
+	
+	"profile": "Profil",
+	"edit_profile": "Ubah profil",
+	"username": "Username",
+	"email": "Email",
+	"edit_photo_profile": "Ketuk untuk ubah foto profil",
+	"camera": "Kamera",
+	"gallery": "Galeri",
+	
+	"question": "Pertanyaan $x",
+	"choose_answer": "Pilih jawaban",
+	"right": "Benar",
+	"wrong": "Salah",
+	
+	"history": "Sejarah",
+	"article": "Artikel",
+	"create_article": "Buat Artikel",
+	"edit_article": "Ubah Artikel",
+	
+	"title": "Judul",
+	"save": "Simpan",
+	"cancel": "Batal"
 }

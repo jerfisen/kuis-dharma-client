@@ -11,10 +11,26 @@
 
 	"learn": "Pembelajaran",
 	"exam": "Latihan",
-	"profile": "Profile",
+	
+	"profile": "Profil",
+	"edit_profile": "Ubah profil",
+	"username": "Username",
+	"email": "Email",
+	"edit_photo_profile": "Ketuk untuk ubah foto profil",
+	"camera": "Kamera",
+	"gallery": "Galeri",
 
 	"question": "Pertanyaan $x",
 	"choose_answer": "Pilih jawaban",
 	"right": "Benar",
-	"wrong": "Salah"
+	"wrong": "Salah",
+	
+	"history": "Sejarah",
+	"article": "Artikel",
+	"create_article": "Buat Artikel",
+	"edit_article": "Ubah Artikel",
+	
+	"title": "Judul",
+	"save": "Simpan",
+	"cancel": "Batal"
 }
