@@ -5,7 +5,7 @@ import 'package:kdygd/model/Topic.dart';
 import 'package:kdygd/view/profile/ProfilePage.dart';
 import 'package:kdygd/view/common/AccountIcon.dart';
 import 'package:kdygd/view/exam/ExamPage.dart';
-import 'package:kdygd/view/learn/LearnPage.dart';
+import 'package:kdygd/view/article/ArticlesPage.dart';
 
 const _ICON_SIZE = 35.0;
 
@@ -25,7 +25,22 @@ class _MainPageState extends State<MainPage> {
 	Topic _topic;
 	@override
 	Widget build(BuildContext context) => new Scaffold(
-		body: _getBody(),
+		body: _topic == null ? new Center(
+			child: new Column(
+				mainAxisSize: MainAxisSize.min,
+				mainAxisAlignment: MainAxisAlignment.center,
+				crossAxisAlignment: CrossAxisAlignment.center,
+				children: <Widget>[
+					new CircularProgressIndicator(),
+					new RaisedButton(
+						child: new Text(
+							S.of(context).topics,
+						),
+						onPressed: _selectTopic,
+					),
+				],
+			),
+		) : _getBody(),
 		bottomNavigationBar: new BottomNavigationBar(
 			onTap: ( final int new_index ) => setState( () => _current_content = MainPageContent.values[new_index] ),
 			items: <BottomNavigationBarItem>[
