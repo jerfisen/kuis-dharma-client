@@ -100,7 +100,7 @@ class _ArticleEditorState extends State<ArticleEditor> {
 				await ArticleRepository.save( new Article(
 					topic_id: widget.article.topic_id,
 					title: _title_controller.text,
-					content: _editor_controller.document.toJson(),
+					content: _editor_controller.document,
 				) );
 			}
 			else {
@@ -108,7 +108,7 @@ class _ArticleEditorState extends State<ArticleEditor> {
 					id: widget.article.id,
 					topic_id: widget.article.topic_id,
 					title: _title_controller.text,
-					content: _editor_controller.document.toJson(),
+					content: _editor_controller.document,
 				) );
 			}
 			await indicator.dismiss();
@@ -116,6 +116,7 @@ class _ArticleEditorState extends State<ArticleEditor> {
 		} catch ( error ) {
 			if ( indicator.isShowing() ) await indicator.dismiss();
 			FlushbarHelper.createError(message: S.of(context).error_occurred ).show(context);
+			print(error);
 		} finally {
 			if ( indicator.isShowing() ) await indicator.dismiss();
 		}
@@ -156,6 +157,8 @@ class _ArticleImageDelegate extends ZefyrImageDelegate<ImageSource> {
 			maxWidth: 512,
 			maxHeight: 512,
 		);
+		
+		if ( cropped_image == null ) return null;
 		
 		final ref = FirebaseStorage.instance.ref().child("article").child("${Uuid().v4()}.${"jpg"}");
 		final upload_task = ref.putFile(cropped_image, new StorageMetadata(
