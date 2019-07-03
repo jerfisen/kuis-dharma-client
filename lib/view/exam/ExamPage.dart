@@ -2,13 +2,15 @@ import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flushbar/flushbar_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
+import 'package:intl/intl.dart';
 import 'package:kdygd/Navigate.dart';
 import 'package:kdygd/common/Config.dart';
 import 'package:kdygd/generated/i18n.dart';
 import 'package:kdygd/graphql/question.dart';
 import 'package:kdygd/model/Question.dart';
 import 'package:kdygd/model/Topic.dart';
-import 'package:edenvidi_progress_indicator/edenvidi_progress_indicator.dart';
+
+part 'exam.history.dart';
 
 class ExamPage extends StatefulWidget {
 	final Topic topic;
@@ -36,11 +38,21 @@ class _ExamPageState extends State<ExamPage> {
 				),
 				new Expanded(
 					child: new Center(
-						child: new RaisedButton(
-							child: new Text(
-								S.of(context).start,
-							),
-							onPressed: _onStart,
+						child: new Column(
+							children: <Widget>[
+								new RaisedButton(
+									child: new Text(
+										S.of(context).start,
+									),
+									onPressed: _onStart,
+								),
+								new RaisedButton(
+									child: new Text(
+										S.of(context).history,
+									),
+									onPressed: _onHistory,
+								),
+							],
 						),
 					),
 				),
@@ -48,10 +60,18 @@ class _ExamPageState extends State<ExamPage> {
 		),
 	);
 	
+	void _onHistory() async {
+		Navigator.of(context).push(
+			new MaterialPageRoute(
+				builder: ( _ ) => new _ExamHistoryPage(),
+			),
+		);
+	}
+	
 	void _onStart() async {
-		ProgressDialog indicator = new ProgressDialog(context: context, message: S.of(context).please_wait);
+		final indicator = FlushbarHelper.createLoading(message: S.of(context).please_wait, linearProgressIndicator: new LinearProgressIndicator(), duration: null);
 		try {
-			indicator.show();
+			indicator.show(context);
 			final exams = await GraphQLProvider.of(context).value.query( new QueryOptions(
 				document: QUERY_DO_EXAMS,
 				variables: {
@@ -71,11 +91,11 @@ class _ExamPageState extends State<ExamPage> {
 				}
 				final remote_config = await RemoteConfig.instance;
 				final start_time_in_seconds = remote_config.getInt(DEFINITION_TIME_PER_QUESTION_IN_SECONDS);
-				indicator.hide();
+				await indicator.dismiss();
 				Navigate.instance.doExam(context, questions: questions, start_duration: new Duration(seconds: start_time_in_seconds));
 			}
 		} catch ( _ ) {
-			if ( indicator.isShowing ) indicator.hide();
+			if ( indicator.isShowing() ) await indicator.dismiss();
 			FlushbarHelper.createError(message: S.of(context).error_occurred).show(context);
 		}
 	}
