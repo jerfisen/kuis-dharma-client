@@ -1,6 +1,6 @@
-
 import 'package:json_annotation/json_annotation.dart';
 import 'package:kdygd/model/Question.dart';
+import 'package:edenvidi_paging/edenvidi_paging.dart';
 
 part 'Exam.g.dart';
 
@@ -51,4 +51,12 @@ class ExamResult {
 	
 	factory  ExamResult.fromJson( final Map<String, dynamic> json ) => _$ExamResultFromJson(json);
 	Map<String, dynamic> toJson() => _$ExamResultToJson(this);
+}
+
+@JsonSerializable()
+class ExamResults extends ListWithPageInfo<ExamResult> {
+	ExamResults(PageInfo meta, List<ExamResult> list) : super(meta, list);
+	
+	factory ExamResults.fromJson( final Map<String, dynamic> json ) => _$ExamResultsFromJson(json);
+	Map<String, dynamic> toJson() => _$ExamResultsToJson(this);
 }
