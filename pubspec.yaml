@@ -55,6 +55,11 @@ dependencies:
   cloud_firestore: ^0.12.5+1
   firebase_storage: ^3.0.2
 
+  edenvidi_paging:
+    git:
+      url: https://github.com/LeonColt/edenvidi_paging.git
+      ref: 3e45ba0613abbfe0b9d885bda1e2d1bfd8667ba8
+
 dependency_overrides:
   path_provider: ^1.1.0
   image_picker: ^0.6.0+10

@@ -169,6 +169,15 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.7"
+  edenvidi_paging:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: "3e45ba0613abbfe0b9d885bda1e2d1bfd8667ba8"
+      resolved-ref: "3e45ba0613abbfe0b9d885bda1e2d1bfd8667ba8"
+      url: "https://github.com/LeonColt/edenvidi_paging.git"
+    source: git
+    version: "0.0.1"
   firebase_auth:
     dependency: "direct main"
     description:
