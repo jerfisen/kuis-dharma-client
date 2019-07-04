@@ -14,7 +14,7 @@ class _ExamResultsER extends ExamRest<ExamResults> {
 	@override REQUEST_METHOD get method => REQUEST_METHOD.GET;
 	@override Future<ExamResults> onData(Map<String, dynamic> data) => Future.value(ExamResults.fromJson(data));
 	@override String get path => "";
-	@override Future<Map<String, String>> get query => Future.value( _page_info.toJson().map( ( key, value ) => new MapEntry(key, value) ) );
+	@override Future<Map<String, String>> get query => Future.value( _page_info.toJson().map( ( key, value ) => new MapEntry(key, value.toString()) ) );
 }
 
 class _ExamSaveER extends ExamRest<ExamResult> {
