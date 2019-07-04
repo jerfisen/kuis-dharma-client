@@ -5,9 +5,12 @@ class _ExamHistoryPage extends StatefulWidget {
 }
 
 class _ExamHistoryPageState extends State<_ExamHistoryPage> {
+	ScrollController _scroll_controller;
+	PagingController<ExamResult> _paging_controller;
 	@override
 	Widget build(BuildContext context) => new Scaffold(
 		body: new NestedScrollView(
+			controller: _scroll_controller,
 			headerSliverBuilder: (_, __) => <Widget>[
 				new SliverAppBar(
 					title: new Text(
@@ -15,74 +18,52 @@ class _ExamHistoryPageState extends State<_ExamHistoryPage> {
 					),
 				),
 			],
-			body: new ListView(
-				padding: const EdgeInsets.all(10.0),
-				children: <Widget>[
-					new Card(
+			body: new ListPaging<ExamResult>(
+				controller: _paging_controller,
+				outer_scroll_controller: _scroll_controller,
+				itemBuilder: ( _, item, index ) => new InkWell(
+					child: new Card(
 						elevation: CARD_ELEVATION,
 						child: new Padding(
 							padding: const EdgeInsets.all(20.0),
 							child: new Column(
 								children: <Widget>[
 									new Text(
-										new DateFormat("'Tanggal' dd MMMM yyyy 'pukul' hh:mm:ss", "id").format( new DateTime.now() ),
+										new DateFormat("'Tanggal' dd MMMM yyyy 'pukul' hh:mm:ss", "id").format( item.date ),
 										style: Theme.of(context).primaryTextTheme.title.copyWith( color: Theme.of(context).textTheme.body1.color ),
 									),
 									new Divider(
 										height: 10.0,
 									),
 									new Text(
-										"Slor 76.50",
+										"Skor ${ item.skor }",
 										style: Theme.of(context).primaryTextTheme.title.copyWith( color: Theme.of(context).textTheme.body1.color ),
 									),
 								],
 							)
 						),
 					),
-					new Card(
-						elevation: CARD_ELEVATION,
-						child: new Padding(
-							padding: const EdgeInsets.all(20.0),
-							child: new Column(
-								children: <Widget>[
-									new Text(
-										new DateFormat("'Tanggal' dd MMMM yyyy 'pukul' hh:mm:ss", "id").format( new DateTime.now().add(const Duration( days: -1 ) ) ),
-										style: Theme.of(context).primaryTextTheme.title.copyWith( color: Theme.of(context).textTheme.body1.color ),
-									),
-									new Divider(
-										height: 10.0,
-									),
-									new Text(
-										"Slor 56.34",
-										style: Theme.of(context).primaryTextTheme.title.copyWith( color: Theme.of(context).textTheme.body1.color ),
-									),
-								],
-							)
+					onTap: () => Navigator.of(context).push(
+						new MaterialPageRoute(
+							builder: ( _ ) => new ExamResultPage(
+								result: item,
+							),
 						),
 					),
-					new Card(
-						elevation: CARD_ELEVATION,
-						child: new Padding(
-							padding: const EdgeInsets.all(20.0),
-							child: new Column(
-								children: <Widget>[
-									new Text(
-										new DateFormat("'Tanggal' dd MMMM yyyy 'pukul' hh:mm:ss", "id").format( new DateTime.now().add(const Duration( days: -2 ) ) ),
-										style: Theme.of(context).primaryTextTheme.title.copyWith( color: Theme.of(context).textTheme.body1.color ),
-									),
-									new Divider(
-										height: 10.0,
-									),
-									new Text(
-										"Slor 100.00",
-										style: Theme.of(context).primaryTextTheme.title.copyWith( color: Theme.of(context).textTheme.body1.color ),
-									),
-								],
-							)
-						),
-					),
-				],
+				),
+				onError: ( error, st ) => FlushbarHelper.createError(message: S.of(context).error_occurred).show(context),
 			),
 		),
 	);
+	
+	@override
+	void initState() {
+		_scroll_controller = new ScrollController();
+		_paging_controller = new RestPagingController(
+			items_per_page: 25,
+			onRequestPage: ( page_info ) => ExamRepository.loadMany(page_info),
+		);
+		super.initState();
+	}
+	
 }

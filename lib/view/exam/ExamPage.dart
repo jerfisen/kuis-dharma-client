@@ -1,3 +1,4 @@
+import 'package:edenvidi_paging/edenvidi_paging.dart';
 import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flushbar/flushbar_helper.dart';
 import 'package:flutter/material.dart';
@@ -7,8 +8,11 @@ import 'package:kdygd/Navigate.dart';
 import 'package:kdygd/common/Config.dart';
 import 'package:kdygd/generated/i18n.dart';
 import 'package:kdygd/graphql/question.dart';
+import 'package:kdygd/model/Exam.dart';
 import 'package:kdygd/model/Question.dart';
 import 'package:kdygd/model/Topic.dart';
+import 'package:kdygd/repository/ExamRepository.dart';
+import 'package:kdygd/view/exam/ExamResultPage.dart';
 
 part 'exam.history.dart';
 
