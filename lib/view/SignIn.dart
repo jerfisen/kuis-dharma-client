@@ -121,10 +121,10 @@ class _SignInState extends State<SignIn> {
 									children: <TextSpan>[
 										new TextSpan(
 											style: Theme.of(context).textTheme.body1,
-											text: "abcdef",
+											text: "",
 										),
 										new TextSpan(
-											text: "ghijklmno",
+											text: "",
 											style: new TextStyle(
 												color: Theme.of(context).primaryTextTheme.title.color,
 												decoration: TextDecoration.underline,
