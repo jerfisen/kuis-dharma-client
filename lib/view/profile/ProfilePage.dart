@@ -1,4 +1,5 @@
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flushbar/flushbar.dart';
 import 'package:flushbar/flushbar_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -17,6 +18,7 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
+	Flushbar _loading_incidator;
 	Future<FirebaseUser> _user_loader;
 	@override 
 	Widget build(BuildContext context) => new Scaffold(
@@ -85,6 +87,16 @@ class _ProfilePageState extends State<ProfilePage> {
 											),
 										],
 									),
+									new Divider(
+										height: 30.0,
+									),
+									new RaisedButton(
+										child: new Text(
+											"Logout",
+											textAlign: TextAlign.left,
+										),
+										onPressed: _logout,
+									),
 								],
 							);
 						} else {
@@ -97,6 +109,22 @@ class _ProfilePageState extends State<ProfilePage> {
 			),
 		),
 	);
+	
+	void _logout() async {
+		if ( _loading_incidator != null ) return;
+		_loading_incidator = FlushbarHelper.createLoading(message: S.of(context).please_wait, linearProgressIndicator: new LinearProgressIndicator(), duration: null);
+		try {
+			_loading_incidator.show(context);
+			await FirebaseAuth.instance.signOut();
+			_loading_incidator.dismiss();
+		} catch ( error ) {
+			if ( _loading_incidator.isShowing() ) await _loading_incidator.dismiss();
+			FlushbarHelper.createError(message: S.of(context).error_occurred).show(context);
+		} finally {
+			if ( _loading_incidator.isShowing() ) await _loading_incidator.dismiss();
+			_loading_incidator = null;
+		}
+	}
 	
 	void _onUpdateProfile() async {
 		await Navigator.of(context).push( new MaterialPageRoute( builder: ( _ ) => new _ProfileEditPage()  ) );
