@@ -29,7 +29,7 @@ class _ExamHistoryPageState extends State<_ExamHistoryPage> {
 							child: new Column(
 								children: <Widget>[
 									new Text(
-										new DateFormat("'Tanggal' dd MMMM yyyy 'pukul' hh:mm:ss", "id").format( item.date ),
+										new DateFormat("'Tanggal' dd MMMM yyyy 'pukul' hh:mm:ss", "id").format( item.date.toLocal() ),
 										style: Theme.of(context).primaryTextTheme.title.copyWith( color: Theme.of(context).textTheme.body1.color ),
 									),
 									new Divider(
