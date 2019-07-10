@@ -1,8 +1,8 @@
 part of 'DoExam.dart';
 
 class _FinishDoExamPage extends StatefulWidget {
-	final List<Answer> answers;
-	const _FinishDoExamPage({Key key, this.answers}) : super(key: key);
+	final List<Tuple2<Question, Answer>> qas;
+	const _FinishDoExamPage({Key key, this.qas}) : super(key: key);
 	@override
 	State<StatefulWidget> createState() => _FinishDoExamPageState();
 }
@@ -124,7 +124,7 @@ class _FinishDoExamPageState extends State<_FinishDoExamPage> {
 		try {
 			loading_indicator.show(context);
 			final result = await ExamRepository.save( new ArgSaveExam(
-				widget.answers.map( ( answer ) => answer == null ? "0" : answer.id ).toList(growable: false),
+				widget.qas.map( ( qa ) => "${ qa.item1.id }-${ qa.item2 == null ? 0 : qa.item2.id }"  ).toList(growable: false),
 			) );
 			await loading_indicator.dismiss();
 			print( result.toJson() );

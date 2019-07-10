@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flushbar/flushbar_helper.dart';
 import 'package:flutter/material.dart';
+import 'package:tuple/tuple.dart';
 import 'package:kdygd/common/Config.dart';
 import 'package:kdygd/generated/i18n.dart';
 import 'package:kdygd/model/Exam.dart';
@@ -26,7 +27,7 @@ class _DoExamPageState extends State<DoExamPage> {
 	Duration _current;
 	Timer _timer;
 	int _index = -1;
-	List<Answer> _answers;
+	List<Tuple2<Question, Answer>> _qas;
 	@override
 	Widget build(BuildContext context) => new WillPopScope(
 		onWillPop: () => Future.value(false),
@@ -87,9 +88,9 @@ class _DoExamPageState extends State<DoExamPage> {
 								widget.questions[position].answers.map( ( final answer ) => [
 									new AnswerTile(
 										answer: answer,
-										state: answer == _answers[position] ? AnswerState.RIGHT : AnswerState.NEUTER,
+										state: answer == _qas[position].item2 ? AnswerState.RIGHT : AnswerState.NEUTER,
 										onTap: () {
-											if ( mounted ) setState( () => _answers[position] = answer ); else _answers[position] = answer;
+											if ( mounted ) setState( () => _qas[position] = new Tuple2(_qas[position].item1, answer) ); else _qas[position] = new Tuple2(_qas[position].item1, answer);
 											if ( _timer != null && _timer.isActive ) _timer.cancel();
 											_nextPage();
 										},
@@ -111,7 +112,7 @@ class _DoExamPageState extends State<DoExamPage> {
 	void initState() {
 		_page_controller = new PageController();
 		_current = widget.start_duration;
-		_answers = new List<Answer>.generate(widget.questions.length, ( _ ) => null);
+		_qas = new List<Tuple2<Question, Answer>>.generate(widget.questions.length, ( final int index ) => new Tuple2<Question, Answer>( widget.questions[index], null ) );
 		super.initState();
 		_index = 0;
 		new Future.delayed(Duration.zero, _startCountDown);
@@ -155,7 +156,7 @@ class _DoExamPageState extends State<DoExamPage> {
 			Navigator.of(context).pushReplacement(
 				new MaterialPageRoute(
 					builder: ( _ ) => new _FinishDoExamPage(
-						answers: _answers,
+						qas: _qas,
 					),
 				),
 			);

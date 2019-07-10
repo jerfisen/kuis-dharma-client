@@ -10,7 +10,7 @@ class AnswerTile extends StatelessWidget {
 	final Answer answer;
 	final AnswerState state;
 	final VoidCallback onTap;
-	const AnswerTile({ Key key, @required this.answer, this.state = AnswerState.NEUTER, @required this.onTap}) : assert( answer != null ), assert( onTap != null ), super(key: key);
+	const AnswerTile({ Key key, @required this.answer, this.state = AnswerState.NEUTER, @required this.onTap}) : assert( onTap != null ), super(key: key);
 	@override
 	Widget build(BuildContext context) => new InkWell(
 		child: new Card(
@@ -18,7 +18,7 @@ class AnswerTile extends StatelessWidget {
 			color: state == AnswerState.NEUTER ? null : state == AnswerState.RIGHT ? Theme.of(context).accentColor : Theme.of(context).errorColor,
 			child: new Padding(
 				padding: const EdgeInsets.all(10.0),
-				child: answer.media_content.isEmpty ? _withoutMedia( context ) : _withMedia( context ),
+				child: answer == null || answer.media_content.isEmpty ? _withoutMedia( context ) : _withMedia( context ),
 			),
 		),
 		onTap: onTap,
@@ -27,7 +27,7 @@ class AnswerTile extends StatelessWidget {
 	Widget _withoutMedia( BuildContext context ) => new Column(
 		children: <Widget>[
 			new Text(
-				answer.text_content,
+				answer == null ? S.of(context).not_answered : answer.text_content,
 				style: new TextStyle(
 					fontSize: 21.0,
 					color: state == AnswerState.NEUTER ? null : Theme.of(context).primaryTextTheme.title.color,
