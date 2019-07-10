@@ -14,7 +14,7 @@ abstract class ExamRest<T> extends Rest<T> {
 		throw new Exception(res.data);
 	}
 	
-	@override bool get is_secure => false;
+	@override bool get is_secure => true;
 	@override Future<String> get domain async => Future.value("kodexa.herokuapp.com");
 	
 	Future<T> onData( Map<String, dynamic> data );
