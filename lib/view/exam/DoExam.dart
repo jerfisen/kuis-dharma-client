@@ -2,7 +2,6 @@ import 'dart:async';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flushbar/flushbar_helper.dart';
 import 'package:flutter/material.dart';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:kdygd/common/Config.dart';
 import 'package:kdygd/generated/i18n.dart';
 import 'package:kdygd/model/Exam.dart';
