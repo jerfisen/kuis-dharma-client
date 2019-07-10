@@ -21,7 +21,7 @@ class Work {
 	@JsonKey(required: true, nullable: false, disallowNullValue: true)
 	final Answer correct_answer;
 	
-	@JsonKey(required: true, nullable: false, disallowNullValue: true)
+	@JsonKey(required: true, nullable: true, disallowNullValue: false)
 	final Answer selected_answer;
 	
 	@JsonKey(required: true, nullable: false, disallowNullValue: true)
