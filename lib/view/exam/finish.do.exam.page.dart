@@ -124,12 +124,13 @@ class _FinishDoExamPageState extends State<_FinishDoExamPage> {
 		try {
 			loading_indicator.show(context);
 			final result = await ExamRepository.save( new ArgSaveExam(
-				widget.answers.map( ( answer ) => answer.id ).toList(growable: false),
+				widget.answers.map( ( answer ) => answer == null ? "0" : answer.id ).toList(growable: false),
 			) );
 			await loading_indicator.dismiss();
 			print( result.toJson() );
 			if ( mounted ) setState( () => _result = result );
 		} catch ( error ) {
+			print(error);
 			await loading_indicator.dismiss();
 			FlushbarHelper.createError(message: S.of(context).error_occurred).show(context);
 		} finally {
