@@ -8,110 +8,133 @@ class _FinishDoExamPage extends StatefulWidget {
 }
 
 class _FinishDoExamPageState extends State<_FinishDoExamPage> {
-	ExamResult _result;
+	Exam _result;
+	dynamic _error;
 	@override
 	Widget build(BuildContext context) => new Scaffold(
-		body: _result == null ? new Center(
-			child: new CircularProgressIndicator(),
-		) : new ListView.builder(
-			itemCount: _result.works.length + 2,
-			itemBuilder: ( _, final int index ) {
-				if ( index == 0 ) return new Card(
-					elevation: CARD_ELEVATION,
-					color: Theme.of(context).accentColor,
-					child: new Padding(
-						padding: const EdgeInsets.all(20.0),
-						child: new Center(
-							child: new Text(
-								"Skor ${ _result.skor.toStringAsFixed(2) }",
-								style: Theme.of(context).primaryTextTheme.title,
-							),
-						),
-					),
-				);
-				else if ( index == 1 ) return new Card(
-					elevation: CARD_ELEVATION,
-					child: new Padding(
-						padding: const EdgeInsets.all(10.0),
-						child: new Row(
-							children: <Widget>[
-								new Column(
-									children: <Widget>[
-										new Text(
-											S.of(context).right,
-										),
-										new SizedBox(
-											height: 5.0,
-										),
-										new Text(
-											S.of(context).wrong,
-										),
-									],
-								),
-								new SizedBox(
-									width: 15.0,
-								),
-								new Column(
-									children: <Widget>[
-										new Container(
-											height: 15.0,
-											width: 15.0,
-											color: Theme.of(context).accentColor,
-										),
-										new SizedBox(
-											height: 5.0,
-										),
-										new Container(
-											height: 15.0,
-											width: 15.0,
-											color: Theme.of(context).errorColor,
-										),
-									],
-								),
-							],
-						),
-					),
-				);
-				else {
-					return new Card(
+		body: _getContent(),
+	);
+	
+	Widget _getContent() {
+		if ( _error == null && _result == null ) return new Center( child: new CircularProgressIndicator(), );
+		else if ( _result != null ) {
+			return new ListView.builder(
+				itemCount: _result.works.length + 2,
+				itemBuilder: ( _, final int index ) {
+					if ( index == 0 ) return new Card(
 						elevation: CARD_ELEVATION,
+						color: Theme.of(context).accentColor,
 						child: new Padding(
-							padding: const EdgeInsets.all(10.0),
-							child: new Column(
-								crossAxisAlignment: CrossAxisAlignment.stretch,
-								children: <Widget>[
-									new Text(
-										S.of(context).question( ( index - 1 ).toString() ),
-										style: const TextStyle(
-											fontSize: 18.0,
-											fontWeight: FontWeight.w700,
-										),
-									),
-									new SizedBox(
-										height: 10.0,
-									),
-									new AnswerTile(
-										answer: _result.works[index - 2].question,
-										onTap: (){},
-									),
-									new AnswerTile(
-										answer: _result.works[index - 2].selected_answer,
-										onTap: (){},
-										state: _result.works[ index - 2 ].selected_answer == _result.works[ index - 2 ].correct_answer ? AnswerState.RIGHT : AnswerState.WRONG,
-									),
-									_result.works[ index - 2 ].selected_answer != _result.works[ index - 2 ].correct_answer ? new AnswerTile(
-										answer: _result.works[index - 2].correct_answer,
-										onTap: (){},
-										state: AnswerState.RIGHT,
-									) : null,
-								].where( ( widget ) => widget != null ).toList(growable: false),
+							padding: const EdgeInsets.all(20.0),
+							child: new Center(
+								child: new Text(
+									"Skor ${ _result.skor.toStringAsFixed(2) }",
+									style: Theme.of(context).primaryTextTheme.title,
+								),
 							),
 						),
 					);
-				}
-			},
-		),
-	);
+					else if ( index == 1 ) return new Card(
+						elevation: CARD_ELEVATION,
+						child: new Padding(
+							padding: const EdgeInsets.all(10.0),
+							child: new Row(
+								children: <Widget>[
+									new Column(
+										children: <Widget>[
+											new Text(
+												S.of(context).right,
+											),
+											new SizedBox(
+												height: 5.0,
+											),
+											new Text(
+												S.of(context).wrong,
+											),
+										],
+									),
+									new SizedBox(
+										width: 15.0,
+									),
+									new Column(
+										children: <Widget>[
+											new Container(
+												height: 15.0,
+												width: 15.0,
+												color: Theme.of(context).accentColor,
+											),
+											new SizedBox(
+												height: 5.0,
+											),
+											new Container(
+												height: 15.0,
+												width: 15.0,
+												color: Theme.of(context).errorColor,
+											),
+										],
+									),
+								],
+							),
+						),
+					);
+					else {
+						return new Card(
+							elevation: CARD_ELEVATION,
+							child: new Padding(
+								padding: const EdgeInsets.all(10.0),
+								child: new Column(
+									crossAxisAlignment: CrossAxisAlignment.stretch,
+									children: <Widget>[
+										new Text(
+											S.of(context).question( ( index - 1 ).toString() ),
+											style: const TextStyle(
+												fontSize: 18.0,
+												fontWeight: FontWeight.w700,
+											),
+										),
+										new SizedBox(
+											height: 10.0,
+										),
+										new AnswerTile(
+											answer: _result.works[index - 2].question,
+											onTap: (){},
+										),
+										new AnswerTile(
+											answer: _result.works[index - 2].selected_answer,
+											onTap: (){},
+											state: _result.works[ index - 2 ].selected_answer == _result.works[ index - 2 ].correct_answer ? AnswerState.RIGHT : AnswerState.WRONG,
+										),
+										_result.works[ index - 2 ].selected_answer != _result.works[ index - 2 ].correct_answer ? new AnswerTile(
+											answer: _result.works[index - 2].correct_answer,
+											onTap: (){},
+											state: AnswerState.RIGHT,
+										) : null,
+									].where( ( widget ) => widget != null ).toList(growable: false),
+								),
+							),
+						);
+					}
+				},
+			);
+		} else {
+			return new Center(
+				child: new Column(
+					crossAxisAlignment: CrossAxisAlignment.center,
+					mainAxisAlignment: MainAxisAlignment.center,
+					mainAxisSize: MainAxisSize.min,
+					children: <Widget>[
+						new Text(
+							S.of(context).error_occurred,
+						),
+						new IconButton(
+							icon: const Icon(Icons.refresh),
+							onPressed: _saveExam,
+						),
+					],
+				),
+			);
+		}
+	}
 	
 	@override
 	void initState() {
@@ -120,21 +143,30 @@ class _FinishDoExamPageState extends State<_FinishDoExamPage> {
 	}
 	
 	void _saveExam() async {
-		final loading_indicator = FlushbarHelper.createLoading(message: S.of(context).please_wait, linearProgressIndicator: new LinearProgressIndicator(), duration: null);
 		try {
-			loading_indicator.show(context);
-			final result = await ExamRepository.save( new ArgSaveExam(
-				widget.qas.map( ( qa ) => "${ qa.item1.id }-${ qa.item2 == null ? 0 : qa.item2.id }"  ).toList(growable: false),
+			final result = await GraphQLProvider.of(context).value.mutate( new MutationOptions(
+				document: MUTATION_SAVE_EXAMS,
+				variables: {
+					"works": widget.qas.map( ( qa ) => new ArgsWorks(
+						question_id: qa.item1.id,
+						answer_id: qa.item2.id,
+					).toJson() ).toList(growable: false),
+				},
+				fetchPolicy: FetchPolicy.noCache,
 			) );
-			await loading_indicator.dismiss();
-			print( result.toJson() );
-			if ( mounted ) setState( () => _result = result );
+			if ( result.hasErrors ) {
+				throw new Exception( result.errors.map( ( error ) => error.message ).join("\r\n") );
+			} else {
+				if ( mounted ) {
+					setState(() {
+						_result = Exam.fromJson(result.data["saveExam"]);
+					});
+				}
+			}
 		} catch ( error ) {
-			print(error);
-			await loading_indicator.dismiss();
-			FlushbarHelper.createError(message: S.of(context).error_occurred).show(context);
-		} finally {
-			if ( loading_indicator.isShowing() ) await loading_indicator.dismiss();
+			if ( mounted ) {
+				setState( () => _error = error );
+			}
 		}
 	}
 }

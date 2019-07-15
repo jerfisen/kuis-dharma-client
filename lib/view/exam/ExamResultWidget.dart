@@ -5,11 +5,11 @@ import 'package:kdygd/view/exam/DoExam.dart';
 import 'package:kdygd/model/Exam.dart';
 
 class ExamResultWidget extends StatelessWidget {
-	final ExamResult exam_result;
-	const ExamResultWidget({Key key, @required this.exam_result}) : assert( exam_result != null ), super(key: key);
+	final Exam exam;
+	const ExamResultWidget({Key key, @required this.exam}) : assert( exam != null ), super(key: key);
 	@override
 	Widget build(BuildContext context) => new ListView.builder(
-		itemCount: exam_result.works.length + 2,
+		itemCount: exam.works.length + 2,
 		itemBuilder: ( _, final int index ) {
 			if ( index == 0 ) return new Card(
 				elevation: CARD_ELEVATION,
@@ -18,7 +18,7 @@ class ExamResultWidget extends StatelessWidget {
 					padding: const EdgeInsets.all(20.0),
 					child: new Center(
 						child: new Text(
-							"Skor ${ exam_result.skor.toStringAsFixed(2) }",
+							"Skor ${ exam.skor.toStringAsFixed(2) }",
 							style: Theme.of(context).primaryTextTheme.title,
 						),
 					),
@@ -86,16 +86,16 @@ class ExamResultWidget extends StatelessWidget {
 									height: 10.0,
 								),
 								new AnswerTile(
-									answer: exam_result.works[index - 2].question,
+									answer: exam.works[index - 2].question,
 									onTap: (){},
 								),
 								new AnswerTile(
-									answer: exam_result.works[index - 2].selected_answer,
+									answer: exam.works[index - 2].selected_answer,
 									onTap: (){},
-									state: exam_result.works[ index - 2 ].selected_answer == exam_result.works[ index - 2 ].correct_answer ? AnswerState.RIGHT : AnswerState.WRONG,
+									state: exam.works[ index - 2 ].selected_answer == exam.works[ index - 2 ].correct_answer ? AnswerState.RIGHT : AnswerState.WRONG,
 								),
-								exam_result.works[ index - 2 ].selected_answer != exam_result.works[ index - 2 ].correct_answer ? new AnswerTile(
-									answer: exam_result.works[index - 2].correct_answer,
+								exam.works[ index - 2 ].selected_answer != exam.works[ index - 2 ].correct_answer ? new AnswerTile(
+									answer: exam.works[index - 2].correct_answer,
 									onTap: (){},
 									state: AnswerState.RIGHT,
 								) : null,

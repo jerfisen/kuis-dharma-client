@@ -1,14 +1,14 @@
 import 'dart:async';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flushbar/flushbar_helper.dart';
 import 'package:flutter/material.dart';
+import 'package:kdygd/graphql/exam.dart';
 import 'package:tuple/tuple.dart';
 import 'package:kdygd/common/Config.dart';
 import 'package:kdygd/generated/i18n.dart';
 import 'package:kdygd/model/Exam.dart';
 import 'package:kdygd/model/Question.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
-import 'package:kdygd/repository/ExamRepository.dart';
+import 'package:graphql_flutter/graphql_flutter.dart';
 
 part 'question.tile.dart';
 part 'answer.tile.dart';

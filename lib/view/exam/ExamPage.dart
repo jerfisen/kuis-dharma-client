@@ -4,14 +4,15 @@ import 'package:flushbar/flushbar_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:intl/intl.dart';
+import 'package:json_annotation/json_annotation.dart';
 import 'package:kdygd/Navigate.dart';
 import 'package:kdygd/common/Config.dart';
 import 'package:kdygd/generated/i18n.dart';
+import 'package:kdygd/graphql/exam.dart';
 import 'package:kdygd/graphql/question.dart';
 import 'package:kdygd/model/Exam.dart';
 import 'package:kdygd/model/Question.dart';
 import 'package:kdygd/model/Topic.dart';
-import 'package:kdygd/repository/ExamRepository.dart';
 import 'package:kdygd/view/exam/ExamResultPage.dart';
 
 part 'exam.history.dart';

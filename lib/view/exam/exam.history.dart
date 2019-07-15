@@ -6,7 +6,7 @@ class _ExamHistoryPage extends StatefulWidget {
 
 class _ExamHistoryPageState extends State<_ExamHistoryPage> {
 	ScrollController _scroll_controller;
-	PagingController<ExamResult> _paging_controller;
+	PagingController<Exam> _paging_controller;
 	@override
 	Widget build(BuildContext context) => new Scaffold(
 		body: new NestedScrollView(
@@ -18,7 +18,7 @@ class _ExamHistoryPageState extends State<_ExamHistoryPage> {
 					),
 				),
 			],
-			body: new ListPaging<ExamResult>(
+			body: new ListPaging<Exam>(
 				controller: _paging_controller,
 				outer_scroll_controller: _scroll_controller,
 				itemBuilder: ( _, item, index ) => new InkWell(
@@ -51,7 +51,14 @@ class _ExamHistoryPageState extends State<_ExamHistoryPage> {
 						),
 					),
 				),
-				onError: ( error, st ) => FlushbarHelper.createError(message: S.of(context).error_occurred).show(context),
+				onError: ( error, st ) {
+					if ( error is MissingRequiredKeysException ) {
+						print(error.missingKeys);
+					}
+					print(error);
+					print(st);
+					FlushbarHelper.createError(message: S.of(context).error_occurred).show(context);
+				},
 			),
 		),
 	);
@@ -59,9 +66,14 @@ class _ExamHistoryPageState extends State<_ExamHistoryPage> {
 	@override
 	void initState() {
 		_scroll_controller = new ScrollController();
-		_paging_controller = new RestPagingController(
+		_paging_controller = new GraphQLPagingController(
+			context: context,
 			items_per_page: 25,
-			onRequestPage: ( page_info ) => ExamRepository.loadMany(page_info),
+			transformer: ( final data ) => Exams.fromJson(data["loadExams"]),
+			query_options: new QueryOptions(
+				document: QUERY_LOAD_EXAMS,
+				fetchPolicy: FetchPolicy.cacheAndNetwork,
+			),
 		);
 		super.initState();
 	}

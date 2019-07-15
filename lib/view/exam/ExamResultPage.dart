@@ -4,7 +4,7 @@ import 'package:kdygd/model/Exam.dart';
 import 'package:kdygd/view/exam/ExamResultWidget.dart';
 
 class ExamResultPage extends StatelessWidget {
-	final ExamResult result;
+	final Exam result;
 	const ExamResultPage({Key key, this.result}) : super(key: key);
 	@override
 	Widget build(BuildContext context) => new Scaffold(
@@ -14,7 +14,7 @@ class ExamResultPage extends StatelessWidget {
 			),
 		),
 		body: new ExamResultWidget(
-			exam_result: result,
+			exam: result,
 		),
 	);
 }
