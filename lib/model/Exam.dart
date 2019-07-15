@@ -33,7 +33,7 @@ class Work {
 }
 
 @JsonSerializable()
-class ExamResult {
+class Exam {
 	
 	@JsonKey(required: true, nullable: false, disallowNullValue: true)
 	final String id;
@@ -47,16 +47,30 @@ class ExamResult {
 	@JsonKey(required: true, nullable: false, disallowNullValue: true)
 	final List<Work> works;
 	
-	ExamResult(this.id, this.date, this.skor, this.works);
+	Exam( this.id, this.date, this.skor, this.works );
 	
-	factory  ExamResult.fromJson( final Map<String, dynamic> json ) => _$ExamResultFromJson(json);
-	Map<String, dynamic> toJson() => _$ExamResultToJson(this);
+	factory Exam.fromJson( final Map<String, dynamic> json ) => _$ExamFromJson(json);
+	Map<String, dynamic> toJson() => _$ExamToJson(this);
 }
 
 @JsonSerializable()
-class ExamResults extends ListWithPageInfo<ExamResult> {
-	ExamResults(PageInfo meta, List<ExamResult> list) : super(meta, list);
+class Exams extends ListWithPageInfo<Exam> {
+	Exams(PageInfo meta, List<Exam> list) : super(meta, list);
 	
-	factory ExamResults.fromJson( final Map<String, dynamic> json ) => _$ExamResultsFromJson(json);
-	Map<String, dynamic> toJson() => _$ExamResultsToJson(this);
+	factory Exams.fromJson( final Map<String, dynamic> json ) => _$ExamsFromJson(json);
+	Map<String, dynamic> toJson() => _$ExamsToJson(this);
+}
+
+@JsonSerializable()
+class ArgsWorks {
+	@JsonKey(required: true, nullable: false, disallowNullValue: true)
+	final String question_id;
+	
+	@JsonKey(required: true, nullable: false, disallowNullValue: true)
+	final String answer_id;
+	
+	ArgsWorks({ this.question_id, this.answer_id } );
+	
+	factory ArgsWorks.fromJson( final Map<String, dynamic> json ) => _$ArgsWorksFromJson(json);
+	Map<String, dynamic> toJson() => _$ArgsWorksToJson(this);
 }
