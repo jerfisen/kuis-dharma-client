@@ -1,4 +1,4 @@
-const DEFAULT_SERVER_URL = "https://kdoqa.herokuapp.com";
+const DEFAULT_SERVER_URL = "https://kuisdharmaapi.herokuapp.com";
 
 const CARD_ELEVATION = 10.0;
 
