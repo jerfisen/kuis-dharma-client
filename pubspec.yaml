@@ -26,15 +26,18 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.2
 
-  fluro: ^1.4.0
+  fluro: ^1.5.0
   rxdart: ^0.22.0
   flutter_auth_buttons: ^0.5.0
-  flushbar: 1.5.3
+  flushbar: ^1.7.1+1
   intl: ^0.15.8
-  zefyr: ^0.5.0
+  zefyr:
+    git:
+      url: https://github.com/pratikpparikh/zefyr.git
+      path: packages/zefyr
+      ref: a78e30cd38ec82ad6a9ad48cb49155d40c43b8d8
   flutter_swiper: ^1.1.6
   firebase_remote_config: ^0.2.0+3
-  dio: ^2.1.7
   uuid: ^2.0.2
   mime: ^0.9.6+3
   tuple: ^1.0.2
@@ -44,31 +47,36 @@ dependencies:
   flutter_easyrefresh: ^1.2.7
 
   #with native code
-  google_sign_in: ^4.0.2
-  shared_preferences: ^0.5.3+1
-  graphql_flutter: ^1.0.1
-  cached_network_image: ^0.8.0
+  google_sign_in: ^4.0.4
+  shared_preferences: ^0.5.3+2
+  graphql_flutter: ^2.0.0
+  cached_network_image: ^1.1.0
   image_cropper: ^1.0.2
 
   #firebase plugin
-  firebase_crashlytics: ^0.0.4+4
-  firebase_auth: ^0.11.1+5
-  cloud_firestore: ^0.12.5+1
-  firebase_storage: ^3.0.2
+  firebase_crashlytics: ^0.0.4+11
+  firebase_auth: ^0.11.1+8
+  cloud_firestore: ^0.12.7
+  firebase_storage: ^3.0.3
 
   edenvidi_paging:
     git:
       url: https://github.com/LeonColt/edenvidi_paging.git
-      ref: 3e45ba0613abbfe0b9d885bda1e2d1bfd8667ba8
+      ref: 297eb04c36831ddef43299f4c9cba1160433447c
+
+  edenvidi_progress_indicator:
+    git:
+      url: https://github.com/LeonColt/edenvidi_progress_indicator.git
+      ref: 83239e3b2abb62bef62d310fded54bd706b50428
 
 dependency_overrides:
-  path_provider: ^1.1.0
-  image_picker: ^0.6.0+10
+  path_provider: ^1.1.2
+  image_picker: ^0.6.0+15
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  build_runner: 1.5.1
+  build_runner: 1.6.1
   json_serializable: ^3.0.0
 
 
