@@ -43,6 +43,7 @@ class _MainPageState extends State<MainPage> {
 		) : _getBody(),
 		bottomNavigationBar: new BottomNavigationBar(
 			onTap: ( final int new_index ) => setState( () => _current_content = MainPageContent.values[new_index] ),
+			currentIndex: _current_content.index,
 			items: <BottomNavigationBarItem>[
 				new BottomNavigationBarItem(
 					icon: Image.asset("images/learn.png", height: _ICON_SIZE, width: _ICON_SIZE,),
@@ -50,7 +51,7 @@ class _MainPageState extends State<MainPage> {
 				),
 				new BottomNavigationBarItem(
 					icon: Image.asset("images/exam.png", height: _ICON_SIZE, width: _ICON_SIZE,),
-					title: Text(S.of(context).exam),
+					title: Text(S.of(context).quiz),
 				),
 				new BottomNavigationBarItem(
 					icon: AccountIcon( size: _ICON_SIZE, ),

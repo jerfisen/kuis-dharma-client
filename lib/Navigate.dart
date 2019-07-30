@@ -9,6 +9,7 @@ import 'package:kdygd/view/SplashScreen.dart';
 import 'package:kdygd/view/exam/DoExam.dart';
 import 'package:kdygd/view/article/ArticleEditor.dart';
 import 'package:kdygd/view/article/ArticlePage.dart';
+import 'package:kdygd/view/quiz/DoQuiz.dart';
 import 'package:kdygd/view/topic/SelectTopicPage.dart';
 
 class Navigate {
@@ -63,5 +64,8 @@ class Navigate {
 		builder: ( _ ) => new ArticlePage(
 			article: article,
 		),
+	) );
+	Future<void> doQuiz( final BuildContext context, { @required final List<Question> questions, @required final Duration start_duration, @required final DateTime quiz_date_time, } ) => Navigator.of(context).push( new MaterialPageRoute(
+		builder: ( _ ) => new DoQuizPage(questions: questions, start_duration: start_duration, quiz_date_time: quiz_date_time, ),
 	) );
 }

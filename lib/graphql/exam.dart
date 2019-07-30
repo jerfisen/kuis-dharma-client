@@ -30,6 +30,40 @@ mutation saveExam(
 }
 ''';
 
+const MUTATION_SAVE_QUIZ = r'''
+mutation saveExam(
+  $works: [ArgsWork!]!,
+  $quiz: DateTime
+) {
+  saveExam(
+    works: $works,
+    quiz: $quiz
+  ) {
+    id
+    date
+    skor
+    works {
+      question {
+        id
+        text_content
+        media_content
+      }
+      correct_answer {
+        id
+        text_content
+        media_content
+      }
+      selected_answer {
+        id
+        text_content
+        media_content
+      }
+      is_correct
+    }
+  }
+}
+''';
+
 const QUERY_LOAD_EXAMS = r'''
 query loadExams( $per_page: Int, $page: Int ) {
   loadExams( per_page: $per_page, page: $page ) {

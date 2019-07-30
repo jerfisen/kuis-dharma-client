@@ -14,6 +14,7 @@ import 'package:kdygd/model/Exam.dart';
 import 'package:kdygd/model/Question.dart';
 import 'package:kdygd/model/Topic.dart';
 import 'package:kdygd/view/exam/ExamResultPage.dart';
+import 'package:kdygd/view/quiz/QuizPage.dart';
 
 part 'exam.history.dart';
 
@@ -47,7 +48,7 @@ class _ExamPageState extends State<ExamPage> {
 							children: <Widget>[
 								new RaisedButton(
 									child: new Text(
-										S.of(context).start,
+										S.of(context).exam,
 									),
 									onPressed: _onStart,
 								),
@@ -57,6 +58,12 @@ class _ExamPageState extends State<ExamPage> {
 									),
 									onPressed: _onHistory,
 								),
+								new RaisedButton(
+									child: new Text(
+										S.of(context).quiz,
+									),
+									onPressed: _onQuiz,
+								),
 							],
 						),
 					),
@@ -64,6 +71,16 @@ class _ExamPageState extends State<ExamPage> {
 			],
 		),
 	);
+	
+	void _onQuiz() async {
+		Navigator.of(context).push(
+			new MaterialPageRoute(
+				builder: ( _ ) => new QuizPage(
+					topic: widget.topic,
+				),
+			),
+		);
+	}
 	
 	void _onHistory() async {
 		Navigator.of(context).push(

@@ -11,6 +11,7 @@
 	
 	"learn": "Pembelajaran",
 	"exam": "Latihan",
+	"quiz": "Kuis",
 	
 	"profile": "Profil",
 	"edit_profile": "Ubah profil",
@@ -33,5 +34,9 @@
 	
 	"title": "Judul",
 	"save": "Simpan",
-	"cancel": "Batal"
+	"cancel": "Batal",
+	"register": "Daftar",
+	"result": "Hasil",
+	"quiz_audience": "Peserta: $x",
+	"already_registered": "Telah terdaftar pada tanggal: \r\n$x"
 }
