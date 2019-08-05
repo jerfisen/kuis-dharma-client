@@ -2,9 +2,9 @@ import 'package:edenvidi_paging/edenvidi_paging.dart';
 import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flushbar/flushbar_helper.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:intl/intl.dart';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:kdygd/Navigate.dart';
 import 'package:kdygd/common/Config.dart';
 import 'package:kdygd/generated/i18n.dart';
@@ -17,6 +17,7 @@ import 'package:kdygd/view/exam/ExamResultPage.dart';
 import 'package:kdygd/view/quiz/QuizPage.dart';
 
 part 'exam.history.dart';
+part 'exam.history.list.dart';
 
 class ExamPage extends StatefulWidget {
 	final Topic topic;

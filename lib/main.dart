@@ -12,7 +12,7 @@ import 'package:firebase_remote_config/firebase_remote_config.dart';
 
 void main() {
 	Crashlytics.instance.enableInDevMode = true;
-	FlutterError.onError = ( FlutterErrorDetails details ) => Crashlytics.instance.onError(details);
+	FlutterError.onError = Crashlytics.instance.recordFlutterError;
 	runApp(KDYGD());
 }
 
